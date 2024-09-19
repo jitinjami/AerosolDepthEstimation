@@ -1,0 +1,7 @@
+size_batch: 0
+lr: 0.001
+dir_train: ""
+dir_test: ""
+dir_results: ""
+mean: []
+std: []

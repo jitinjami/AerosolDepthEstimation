@@ -708,15 +708,26 @@ class SwinTransformerV2(nn.Module):
             nn.init.constant_(m.bias, 0)
             nn.init.constant_(m.weight, 1.0)
 
+    @property
+    def size_out(self) -> int:
+        '''Get output dimension.
+
+        Returns:
+            int: Number of output dimension.
+        '''
+        return int(self.embed_dim * 2 ** (self.num_layers - 1))
+
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         '''Forward method.
 
         Args:
-            x (torch.Tensor): Input tensor (size_batch, num_channel, height, width).
+            x (torch.Tensor): Input tensor (size_batch, num_channel, height,
+            width).
 
         Returns:
-            torch.Tensor: Output tensor (size_batch, height * width, num_channel).
-        '''        
+            torch.Tensor: Output tensor (size_batch, height * width,
+            num_channel).
+        '''
         x = self.patch_embed(x)
         x = self.pos_drop(x)
 
@@ -726,3 +737,10 @@ class SwinTransformerV2(nn.Module):
         x = self.norm(x)  # B L C
 
         return x
+
+
+if __name__ == '__main__':
+    model = SwinTransformerV2()
+    x = torch.rand(1, 13, 128, 128)
+    out = model(x)
+    print(out.shape)

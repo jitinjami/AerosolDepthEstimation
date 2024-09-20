@@ -1,0 +1,5 @@
+dir_data: ../data
+dir_img: ../data/train_images
+path_csv: ../data/train_answer.csv
+r_val: 0.25
+seed: 42

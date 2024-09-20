@@ -33,9 +33,13 @@ def main(cfgs: argparse.Namespace) -> None:
             for sample in tqdm(labels)
         ]
     )
-    mean = np.mean(imgs, (0, 1, 2))
-    std = np.std(imgs, (0, 1, 2))
-    print()
+    meta = {
+        'mean': np.mean(imgs, (0, 1, 2)).tolist(),
+        'std': np.std(imgs, (0, 1, 2)).tolist(),
+    }
+
+    with open(os.path.join(cfgs.dir_data, 'meta.json'), 'w') as f:
+        json.dump(meta, f)
 
 
 if __name__ == '__main__':

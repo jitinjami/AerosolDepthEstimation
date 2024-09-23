@@ -1,5 +1,51 @@
-data_path: "./data"
-train_csv: "train_answer.csv"
-train_path: "train_images"
-test_csv: "test_answer.csv"
-test_path: "test_images"
+backbone: swin
+cache: True
+checkpoint: null
+device: cuda
+dir_test: ../data/test_images
+dir_train: ../data/train_images
+dir_work: ../results
+epoch_warmup: 30
+epoch: 300
+freq_eval: 5
+freq_log: 
+freq_save:
+lr: 0.001
+num_worker: 8
+path_csv_test: ../data/test_answer.csv
+path_csv_train: ../data/train_answer.csv
+seed: 42
+size_batch: 32
+
+mean:
+  [
+    -344.0133056640625,
+    -343.75811767578125,
+    -343.8673095703125,
+    -344.06536865234375,
+    -344.17132568359375,
+    -344.05499267578125,
+    -344.04937744140625,
+    -343.76983642578125,
+    -344.0229187011719,
+    -343.90118408203125,
+    -346.1429443359375,
+    -346.1374206542969,
+    -346.05096435546875,
+  ]
+std:
+  [
+    1795.8746337890625,
+    1795.2197265625,
+    1795.5185546875,
+    1796.0604248046875,
+    1796.35009765625,
+    1796.0318603515625,
+    1796.0164794921875,
+    1795.251953125,
+    1795.94384765625,
+    1795.5677490234375,
+    1801.662353515625,
+    1801.647705078125,
+    1801.4114990234375,
+  ]

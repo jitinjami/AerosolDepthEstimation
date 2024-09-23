@@ -7,22 +7,22 @@ from .swin import SwinTransformerV2
 class BaseModel(nn.Module):
     '''Base model.'''
 
-    def __init__(self, cfgs: dict) -> None:
+    def __init__(self, backbone: str) -> None:
         '''Base model.
 
         Args:
-            cfgs (dict): Configuration dictionary.
+            backbone (str): Backbone to use.
 
         Raises:
             ValueError: Whether given backbone name is valid.
         '''
         super().__init__()
 
-        match cfgs.backbone:
+        match backbone:
             case 'swin':
                 self.backbone = SwinTransformerV2()
             case _:
-                raise ValueError(f'Backbone {cfgs.backbone} is invalid.')
+                raise ValueError(f'Backbone {backbone} is invalid.')
 
         self.head = nn.Sequential(
             nn.AdaptiveAvgPool1d(1), nn.Linear(self.backbone.size_out, 1)

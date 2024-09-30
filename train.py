@@ -90,7 +90,7 @@ def test(
     model.eval()
 
     with torch.no_grad():
-        for idx, (x, y, len_x, len_y) in enumerate(dataloader):
+        for idx, (x, y) in enumerate(dataloader):
             x, y = x.to(device), y.to(device)
             out = model(x)
             loss = fn_loss(out, y)
@@ -98,7 +98,7 @@ def test(
 
             # decode and cache results every freq_eval epoch
             if man.check_step(epoch + 1, man.freq_eval, man.epoch_max):
-                for pred, len_pred, label in zip(out.cpu(), y.cpu()):
+                for pred, label in zip(out.cpu(), y.cpu()):
                     preds.append(pred)
                     labels.append(label)
 

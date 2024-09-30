@@ -8,14 +8,15 @@ dir_work: ../results
 epoch_warmup: 30
 epoch: 300
 freq_eval: 5
-freq_log: 
+freq_log:
 freq_save:
 lr: 0.001
 num_worker: 8
-path_csv_test: ../data/test_answer.csv
-path_csv_train: ../data/train_answer.csv
+path_csv_test: ../data/val.csv
+path_csv_train: ../data/train.csv
 seed: 42
 size_batch: 32
+test: false
 
 mean:
   [
